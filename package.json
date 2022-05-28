@@ -1,0 +1,11 @@
+{
+  "name": "storepracticeproject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "docker-compose up --build"
+  },
+  "author": "Kelly Dpuglass",
+  "license": "ISC"
+}
