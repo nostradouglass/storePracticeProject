@@ -1,8 +1,37 @@
+import React from "react";
+import AwesomeSlider from "react-awesome-slider";
+// @ts-ignore
+import withAutoPlay from "react-awesome-slider/dist/autoplay";
+import "react-awesome-slider/dist/styles.css";
 
-import React from 'react'
+const AutoplaySlider = withAutoPlay(AwesomeSlider);
 
 export default function HeroSlider() {
+  let isMobile = true;
+
+  if (isMobile) {
+    return (
+      <AutoplaySlider
+        play={true}
+        cancelOnInteraction={false} // should stop playing on user interaction
+        interval={6000}
+      >
+        <div data-src="./images/slider-pendant-lighting-alt.jpg" />
+        <div data-src="./images/slider-wall-clock-alt.jpg"></div>
+        <div data-src="./images/slider-basket-alt.jpg"></div>
+      </AutoplaySlider>
+    );
+  }
+
   return (
-    <div>HeroSlider</div>
-  )
+    <AutoplaySlider
+      play={true}
+      cancelOnInteraction={false} // should stop playing on user interaction
+      interval={6000}
+    >
+      <div data-src="./images/slider-pendant-lighting.jpeg"></div>
+      <div data-src="./images/slider-wall-clock.jpg"></div>
+      <div data-src="./images/slider-basket.jpg"></div>
+    </AutoplaySlider>
+  );
 }
