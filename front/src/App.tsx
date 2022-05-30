@@ -1,13 +1,14 @@
 import React from 'react';
-
+import { Routes, Route } from 'react-router-dom';
+import HomeScreen from './screens/HomeScreen';
 
 
 function App() {
   return (
     <div className="">
-      <header className="">
-       <h3>Test</h3>
-      </header>
+      <Routes>
+        <Route path="/" element={<HomeScreen />} />
+      </Routes>
     </div>
   );
 }
