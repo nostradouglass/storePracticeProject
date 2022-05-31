@@ -49,7 +49,7 @@ let products = [
 
 export default function ProductsGrid() {
   return (
-    <div className="flex flex-row justify-start flex-wrap m-12">
+    <div className="flex flex-row justify-center flex-wrap  m-4">
       {products.map((product) => {
         return <ProductThumbListing product={product} key={product.id} />;
       })}

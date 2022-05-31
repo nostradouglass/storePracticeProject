@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 export default function BreadcrumbAndSearch() {
-  const [isMobile, setIsmobile] = useState(false);
+  const [isMobile, setIsmobile] = useState(true);
 
   return (
     <div className="flex flex-row my-16 mx-2 justify-between md:mx-36">
