@@ -46,7 +46,6 @@ let products = [
   },
 ];
 
-
 export default function ProductsGrid() {
   return (
     <div className="flex flex-row justify-center flex-wrap  m-4">
@@ -54,6 +53,5 @@ export default function ProductsGrid() {
         return <ProductThumbListing product={product} key={product.id} />;
       })}
     </div>
-    
   );
 }

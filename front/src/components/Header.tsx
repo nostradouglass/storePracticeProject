@@ -61,7 +61,6 @@ export default function Header() {
     (state) => state.mobileStatus as { isMobile: boolean }
   );
 
-
   return (
     <div className="flex justify-between py-12 px-12">
       <LeftNav isMobile={isMobile} />

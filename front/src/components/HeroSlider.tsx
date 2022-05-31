@@ -8,8 +8,7 @@ import { useAppSelector } from "../redux/hooks";
 const AutoplaySlider = withAutoPlay(AwesomeSlider);
 
 export default function HeroSlider() {
-
-  const isMobile = useAppSelector((state) => state.mobileStatus)
+  const isMobile = useAppSelector((state) => state.mobileStatus);
 
   if (isMobile) {
     return (
