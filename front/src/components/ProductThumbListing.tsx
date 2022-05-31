@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useAppSelector } from "../redux/hooks";
 
 interface Props {
   product: {
@@ -13,7 +14,9 @@ interface Props {
 export const ProductThumbListing = ({ product }: Props) => {
   let isFavorite = false;
 
-  const [isMobile, setIsMobile] = useState(false)
+  const { isMobile } = useAppSelector(
+    (state) => state.mobileStatus as { isMobile: boolean }
+  );
 
   let favoriteTag = () => {
     if (isMobile) {

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import HamburgerMenu from "./HamburgerMenu";
+import { useAppSelector } from "../redux/hooks";
 
 const LeftNav = ({ isMobile }: { isMobile: boolean }) => {
   if (isMobile) {
@@ -20,7 +21,11 @@ const LeftNav = ({ isMobile }: { isMobile: boolean }) => {
 };
 
 const CenterNav = () => {
-  return <h1 className="text-gray-800 text-2xl tracking-widest md:w-60 lg:w-96">SAVOY</h1>;
+  return (
+    <h1 className="text-gray-800 text-2xl tracking-widest md:w-60 lg:w-96">
+      SAVOY
+    </h1>
+  );
 };
 
 const RightNav = ({ isMobile }: { isMobile: boolean }) => {
@@ -52,12 +57,10 @@ const RightNav = ({ isMobile }: { isMobile: boolean }) => {
 };
 
 export default function Header() {
-  const [isMobile, setIsMobile] = useState(false);
+  const { isMobile } = useAppSelector(
+    (state) => state.mobileStatus as { isMobile: boolean }
+  );
 
-  useEffect(() => {
-    if (window.innerWidth < 768)
-      setIsMobile(true)
-  }, [])
 
   return (
     <div className="flex justify-between py-12 px-12">

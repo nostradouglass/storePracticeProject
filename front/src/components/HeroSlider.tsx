@@ -3,11 +3,13 @@ import AwesomeSlider from "react-awesome-slider";
 // @ts-ignore
 import withAutoPlay from "react-awesome-slider/dist/autoplay";
 import "react-awesome-slider/dist/styles.css";
+import { useAppSelector } from "../redux/hooks";
 
 const AutoplaySlider = withAutoPlay(AwesomeSlider);
 
 export default function HeroSlider() {
-  let isMobile = true;
+
+  const isMobile = useAppSelector((state) => state.mobileStatus)
 
   if (isMobile) {
     return (

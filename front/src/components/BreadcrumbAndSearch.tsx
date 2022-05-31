@@ -1,7 +1,11 @@
 import React, { useState } from "react";
+import { useAppSelector } from "../redux/hooks";
+
 
 export default function BreadcrumbAndSearch() {
-  const [isMobile, setIsmobile] = useState(true);
+  const { isMobile } = useAppSelector(
+    (state) => state.mobileStatus as { isMobile: boolean }
+  );
 
   return (
     <div className="flex flex-row my-16 mx-2 justify-between md:mx-36">
