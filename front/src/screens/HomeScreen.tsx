@@ -2,6 +2,7 @@ import React from "react";
 import BreadcrumbAndSearch from "../components/BreadcrumbAndSearch";
 import HeroSlider from "../components/HeroSlider";
 import { MainLayout } from "../components/MainLayout";
+import ProductsGrid from "../components/ProductsGrid";
 
 export default function HomeScreen() {
   return (
@@ -9,6 +10,7 @@ export default function HomeScreen() {
       <>
       <HeroSlider />
       <BreadcrumbAndSearch />
+      <ProductsGrid />
       </>
     </MainLayout>
   );
