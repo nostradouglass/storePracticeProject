@@ -1,0 +1,61 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+
+model User {
+  id       Int  @id @default(autoincrement())
+  firstName     String? @map("first_name")
+  lastName       String? @map("last_name")
+  email    String  @unique
+  password String
+  isAdmin  Boolean @default(false) @map("is_admin")
+  orders Order[]
+
+  @@unique([id, email])
+  
+  @@map("users")
+}
+
+model Product {
+  id  Int  @id @default(autoincrement())
+  name String
+  image String?
+  imageAlt String? @map("image_alt")
+  brand String?
+  description String?
+  price Decimal?
+  msrp Decimal?
+  countInStock Int? @map("count_in_stock")
+  rating Decimal?
+  numReviews Int? @map("num_reviews")
+  favorite Boolean
+  color String?
+  order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  orderId Int @map("order_id")
+
+  @@unique([id])
+  @@map("Products")
+}
+
+
+model Order {
+  id  Int  @id @default(autoincrement())
+  order_date DateTime @default(now())
+  status String
+  products Product[]
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId Int @map("user_id")
+
+  @@unique([id])
+  @@map("orders")
+}
