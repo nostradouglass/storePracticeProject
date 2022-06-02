@@ -1,4 +1,4 @@
-const { default: axios } = require('axios')
+
 const graphql = require('graphql')
 const { GraphQLString, GraphQLInt, GraphQLSchema } = graphql
 const { GraphQLObjectType } = graphql
