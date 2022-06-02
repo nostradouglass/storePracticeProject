@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useAppSelector } from "../redux/hooks";
 
+
 interface Props {
   product: {
     id: number;
@@ -13,13 +14,22 @@ interface Props {
 }
 
 export const ProductThumbListing = ({ product }: Props) => {
+  const [priceShowMore, setPriceShowMore] = useState<number | string>(
+    `$${product.price}`
+  );
 
   const { isMobile } = useAppSelector(
     (state) => state.mobileStatus as { isMobile: boolean }
   );
 
-  let favoriteTag = () => {
+  let onHover = () => {
+    setPriceShowMore("Show more");
+  };
+  let onHoverLeave = () => {
+    setPriceShowMore(`$${product.price}`);
+  };
 
+  let favoriteTag = () => {
     if (isMobile) {
       if (product.favorite) {
         return (
@@ -58,12 +68,24 @@ export const ProductThumbListing = ({ product }: Props) => {
 
   return (
     <div className="m-2">
-      <img className="w-40 h-84" src={`../images/${product.image}`} />
+      <img
+        onMouseEnter={onHover}
+        onMouseLeave={onHoverLeave}
+        className="w-40 h-84 md:w-80 md:h-96 cursor-pointer"
+        src={`../images/${product.image}`}
+      />
       <div className="flex justify-between">
-        <h4 className="text-gray-500 py-2 w-24">{product.title}</h4>
+        <h4 className="text-gray-500 py-2 w-24 cursor-pointer">{product.title}</h4>
         {favoriteTag()}
       </div>
-      <h5>${product.price}</h5>
+      <h5
+        onMouseEnter={onHover}
+        onMouseLeave={onHoverLeave}
+        className="price cursor-pointer"
+        style={{ opacity: "1" }}
+      >
+        {priceShowMore}
+      </h5>
     </div>
   );
 };
