@@ -8,19 +8,20 @@ interface Props {
     imageAlt: string;
     title: string;
     price: number;
+    favorite: boolean;
   };
 }
 
 export const ProductThumbListing = ({ product }: Props) => {
-  let isFavorite = false;
 
   const { isMobile } = useAppSelector(
     (state) => state.mobileStatus as { isMobile: boolean }
   );
 
   let favoriteTag = () => {
+
     if (isMobile) {
-      if (isFavorite) {
+      if (product.favorite) {
         return (
           <svg
             xmlns="http://www.w3.org/2000/svg"

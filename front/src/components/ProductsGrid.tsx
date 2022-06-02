@@ -1,5 +1,8 @@
 import React from "react";
 import { ProductThumbListing } from "./ProductThumbListing";
+import {GET_ALL_PRODUCTS} from '../graphql/productQueries'
+import { useQuery } from '@apollo/client'
+
 
 let products = [
   {
@@ -47,9 +50,15 @@ let products = [
 ];
 
 export default function ProductsGrid() {
+
+  const { loading, error, data } = useQuery(GET_ALL_PRODUCTS)
+
+  if (error) <h3>Error!</h3>
+  if (loading) <h3>Loading...</h3>
+
   return (
     <div className="flex flex-row justify-center flex-wrap  m-4">
-      {products.map((product) => {
+      {data?.products.map((product: any) => {
         return <ProductThumbListing product={product} key={product.id} />;
       })}
     </div>
