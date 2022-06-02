@@ -6,7 +6,9 @@ import {
   GraphQLInt,
   GraphQLNonNull,
   GraphQLBoolean,
+  GraphQLFloat
 } from "graphql";
+import ProductType from "../types/ProductType";
 import UserType from '../types/UserType'
 
 const prisma = new PrismaClient();
@@ -48,6 +50,42 @@ const mutation = new GraphQLObjectType({
                 }
             })
         }
+    },
+    addProduct: {
+      type: ProductType,
+      args: {
+        title: { type: new GraphQLNonNull(GraphQLString)},
+        image: { type: GraphQLString },
+        imageAlt:{ type: GraphQLString },
+        brand: { type: GraphQLBoolean },
+        description: { type: GraphQLString },
+        price: { type: GraphQLFloat},
+        msrp:{ type: GraphQLFloat},
+        countInStock: { type: GraphQLInt },
+        rating:{ type: GraphQLFloat},
+        numReviews:{ type: GraphQLInt },
+        favorite:{ type: GraphQLBoolean },
+        color:{ type: GraphQLString },
+      },
+     
+      resolve(parentValue,  { title, image, imageAlt, brand, description, price, msrp, countInStock, rating, numReviews, favorite, color } ) {
+        return prisma.product.create({
+          data: {
+            title: title,
+            image: image ,
+            imageAlt: imageAlt,
+            brand: brand ,
+            description: description ,
+            price: price ,
+            msrp: msrp,
+            countInStock: countInStock,
+            rating: rating,
+            numReviews: numReviews,
+            favorite: favorite,
+            color: color,
+          },
+        });
+      },
     }
   },
 });

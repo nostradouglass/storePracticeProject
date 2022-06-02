@@ -2,11 +2,13 @@ import {
   GraphQLObjectType,
   GraphQLInt,
   GraphQLString,
-  GraphQLBoolean
+  GraphQLBoolean,
+  GraphQLList
 } from "graphql";
 import UserType from "./types/UserType";
 
 import pkg from "@prisma/client";
+import ProductType from "./types/ProductType";
 const { PrismaClient } = pkg;
 
 const prisma = new PrismaClient();
@@ -32,6 +34,12 @@ const RootQuery = new GraphQLObjectType({
         });
       },
     },
+    products: {
+      type: new GraphQLList(ProductType),
+      resolve(parentValue, args) {
+        return prisma.product.findMany()
+      }
+    }
   },
 });
 

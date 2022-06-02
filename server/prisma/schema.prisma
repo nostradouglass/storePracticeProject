@@ -28,7 +28,7 @@ model User {
 
 model Product {
   id           Int      @id @default(autoincrement())
-  name         String
+  title        String
   image        String?
   imageAlt     String?  @map("image_alt")
   brand        String?
@@ -38,10 +38,10 @@ model Product {
   countInStock Int?     @map("count_in_stock")
   rating       Decimal?
   numReviews   Int?     @map("num_reviews")
-  favorite     Boolean
+  favorite     Boolean  @default(false)
   color        String?
-  order        Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
-  orderId      Int      @map("order_id")
+  order        Order?    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  orderId      Int?      @map("order_id")
 
   @@unique([id])
   @@map("Products")
