@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useAppSelector } from "../redux/hooks";
 import { SearchBar } from "./SearchBar";
 
@@ -5,6 +6,12 @@ export default function BreadcrumbAndSearch() {
   const { isMobile } = useAppSelector(
     (state) => state.mobileStatus as { isMobile: boolean }
   );
+
+  const [searchBarOpen, setSearchBarOpen] = useState<boolean>(false)
+
+  let closeSearch = () => {
+   setSearchBarOpen(false)
+  }
 
   return (
     <div className="flex flex-col my-16 mx-2 md:mx-36">
@@ -48,7 +55,10 @@ export default function BreadcrumbAndSearch() {
             <div>
               <div className="flex flex-row ">
                 <h4 className="text-gray-500 px-4">Filter</h4>
-                <button type="button" onClick={() => console.log("test")}>
+                <button type="button" onClick={() => {
+                  setSearchBarOpen(true)
+                }
+                  }>
                   <h4 className="text-gray-500 px-4">Search</h4>
                 </button>
                 <svg
@@ -70,7 +80,7 @@ export default function BreadcrumbAndSearch() {
           </>
         )}
       </div>
-      {isMobile ? <></> : <SearchBar searchOpen={true} />}
+      {isMobile ? <></> : <SearchBar searchOpen={searchBarOpen} closeSearch={closeSearch} />}
     </div>
   );
 }

@@ -1,22 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export let SearchBar = ({ searchOpen }: { searchOpen: boolean }) => {
-  const [searchOpenState, setSearchOpenState] = useState<boolean>(searchOpen);
+export let SearchBar = ({searchOpen, closeSearch}: any) => {
 
-  let closeSearch = () => {
-    setSearchOpenState(false);
-  };
+  const [searchTerm, setSearchTerm] = useState("")
 
-  if (!searchOpenState) {
+  if (!searchOpen) {
     return <div></div>;
   } else {
     return (
       <div className="flex flex-row justify-between  md:pt-8">
         <form>
           <input
+          value={searchTerm}
+          onChange={({target}) => setSearchTerm(target.value)}
             className="md:h-12 text-2xl border-0 outline-none"
             placeholder="Search products"
           />
+          {searchTerm.length > 0 ? (<h5 className="text-gray-500">Press Enter to search</h5>) : <></> }
         </form>
         <button onClick={() => closeSearch()}>
           <svg

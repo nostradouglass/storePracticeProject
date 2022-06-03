@@ -1,7 +1,7 @@
 import { ActionType } from "../action-types";
-import { Action } from "../actions";
+import { SetIsMobileAction } from "../actions";
 
-export const mobileReducer = (state = { isMobile: true }, action: Action) => {
+export const mobileReducer = (state = { isMobile: true }, action: SetIsMobileAction) => {
   switch (action.type) {
     case ActionType.SET_IS_MOBILE:
       return { ...state, isMobile: action.payload };

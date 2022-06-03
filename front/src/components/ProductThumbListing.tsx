@@ -14,8 +14,6 @@ interface Props {
 
 export const ProductThumbListing = ({ product }: Props) => {
 
-  console.log(product)
-
   const [hover, setHover] = useState(false)
 
   const [priceShowMore, setPriceShowMore] = useState<number | string>(
