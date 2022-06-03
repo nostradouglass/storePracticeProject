@@ -13,6 +13,11 @@ interface Props {
 }
 
 export const ProductThumbListing = ({ product }: Props) => {
+
+  console.log(product)
+
+  const [hover, setHover] = useState(false)
+
   const [priceShowMore, setPriceShowMore] = useState<number | string>(
     `$${product.price}`
   );
@@ -23,9 +28,11 @@ export const ProductThumbListing = ({ product }: Props) => {
 
   let onHover = () => {
     setPriceShowMore("Show more");
+    setHover(true)
   };
   let onHoverLeave = () => {
     setPriceShowMore(`$${product.price}`);
+    setHover(false)
   };
 
   let favoriteTag = () => {
@@ -68,10 +75,14 @@ export const ProductThumbListing = ({ product }: Props) => {
   return (
     <div className="m-2">
       <img
-        onMouseEnter={onHover}
-        onMouseLeave={onHoverLeave}
+        onMouseEnter={() => onHover()}
+        onMouseLeave={() => onHoverLeave()}
         className="w-40 h-84 md:w-80 md:h-96 cursor-pointer"
-        src={`../images/${product.image}`}
+        src={hover ? 
+          //product.imageAlt ? `../images/${product.imageAlt}` :  `../images/${product.image}`
+          `../images/${product.imageAlt}`
+          : 
+          `../images/${product.image}`}
       />
       <div className="flex justify-between">
         <h4 className="text-gray-500 py-2 w-24 cursor-pointer">
