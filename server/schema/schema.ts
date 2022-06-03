@@ -1,17 +1,12 @@
-
-const graphql = require('graphql')
-const { GraphQLString, GraphQLInt, GraphQLSchema } = graphql
-const { GraphQLObjectType } = graphql
-const _ = require('lodash')
-const UserType = require("./types/UserType")
-import RootQuery from './rootQuery'
-import mutation from './mutations/mutations'
+const graphql = require("graphql");
+const { GraphQLSchema } = graphql;
+import RootQuery from "./rootQuery";
+import mutation from "./mutations/mutations";
 
 module.exports = new GraphQLSchema({
-    query: RootQuery,
-    mutation: mutation
-})
-
+  query: RootQuery,
+  mutation: mutation,
+});
 
 // EXAMPLES
 
@@ -24,7 +19,7 @@ module.exports = new GraphQLSchema({
 //       isAdmin
 //     }
 //   }
-  
+
 //   {
 //     user(id:1) {
 //       id
@@ -32,4 +27,3 @@ module.exports = new GraphQLSchema({
 //       lastName
 //     }
 //   }
-  

@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useAppSelector } from "../redux/hooks";
-
 
 interface Props {
   product: {
@@ -75,7 +74,9 @@ export const ProductThumbListing = ({ product }: Props) => {
         src={`../images/${product.image}`}
       />
       <div className="flex justify-between">
-        <h4 className="text-gray-500 py-2 w-24 cursor-pointer">{product.title}</h4>
+        <h4 className="text-gray-500 py-2 w-24 cursor-pointer">
+          {product.title}
+        </h4>
         {favoriteTag()}
       </div>
       <h5

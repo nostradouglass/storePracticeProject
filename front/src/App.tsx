@@ -1,11 +1,12 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import HomeScreen from "./screens/HomeScreen";
-import { useAppSelector, useAppDispatch } from "./redux/hooks";
-import { setMobile } from "./redux/actions/mobileActions";
+// import {  useAppDispatch } from "./redux/hooks";
+import { setMobile } from "./redux/action-creators";
+import { useActions } from './redux/hooks'
 
 let App = () => {
-  const dispatch = useAppDispatch();
+  const { setMobile } = useActions();
 
   useEffect(() => {
     //@ts-ignore
@@ -14,9 +15,9 @@ let App = () => {
         navigator.userAgent
       )
     ) {
-      dispatch(setMobile(true));
+      setMobile(true)
     } else {
-      dispatch(setMobile(false));
+      setMobile(false)
     }
   }, []);
 

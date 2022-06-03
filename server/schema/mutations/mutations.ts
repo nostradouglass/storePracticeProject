@@ -6,10 +6,10 @@ import {
   GraphQLInt,
   GraphQLNonNull,
   GraphQLBoolean,
-  GraphQLFloat
+  GraphQLFloat,
 } from "graphql";
 import ProductType from "../types/ProductType";
-import UserType from '../types/UserType'
+import UserType from "../types/UserType";
 
 const prisma = new PrismaClient();
 
@@ -24,7 +24,6 @@ const mutation = new GraphQLObjectType({
         email: { type: new GraphQLNonNull(GraphQLString) },
         isAdmin: { type: GraphQLBoolean },
         password: { type: new GraphQLNonNull(GraphQLString) },
-
       },
       resolve(parentValue, { firstName, lastName, email, isAdmin, password }) {
         return prisma.user.create({
@@ -33,50 +32,66 @@ const mutation = new GraphQLObjectType({
             lastName: lastName,
             email: email,
             isAdmin: isAdmin,
-            password: password
+            password: password,
           },
         });
       },
     },
     removeUser: {
-        type: UserType,
-        args: {
-            id: { type: GraphQLInt}
-        },
-        resolve(parentValue, {id}) {
-            return prisma.user.delete({
-                where: {
-                    id: id
-                }
-            })
-        }
+      type: UserType,
+      args: {
+        id: { type: GraphQLInt },
+      },
+      resolve(parentValue, { id }) {
+        return prisma.user.delete({
+          where: {
+            id: id,
+          },
+        });
+      },
     },
     addProduct: {
       type: ProductType,
       args: {
-        title: { type: new GraphQLNonNull(GraphQLString)},
+        title: { type: new GraphQLNonNull(GraphQLString) },
         image: { type: GraphQLString },
-        imageAlt:{ type: GraphQLString },
+        imageAlt: { type: GraphQLString },
         brand: { type: GraphQLBoolean },
         description: { type: GraphQLString },
-        price: { type: GraphQLFloat},
-        msrp:{ type: GraphQLFloat},
+        price: { type: GraphQLFloat },
+        msrp: { type: GraphQLFloat },
         countInStock: { type: GraphQLInt },
-        rating:{ type: GraphQLFloat},
-        numReviews:{ type: GraphQLInt },
-        favorite:{ type: GraphQLBoolean },
-        color:{ type: GraphQLString },
+        rating: { type: GraphQLFloat },
+        numReviews: { type: GraphQLInt },
+        favorite: { type: GraphQLBoolean },
+        color: { type: GraphQLString },
       },
-     
-      resolve(parentValue,  { title, image, imageAlt, brand, description, price, msrp, countInStock, rating, numReviews, favorite, color } ) {
+
+      resolve(
+        parentValue,
+        {
+          title,
+          image,
+          imageAlt,
+          brand,
+          description,
+          price,
+          msrp,
+          countInStock,
+          rating,
+          numReviews,
+          favorite,
+          color,
+        }
+      ) {
         return prisma.product.create({
           data: {
             title: title,
-            image: image ,
+            image: image,
             imageAlt: imageAlt,
-            brand: brand ,
-            description: description ,
-            price: price ,
+            brand: brand,
+            description: description,
+            price: price,
             msrp: msrp,
             countInStock: countInStock,
             rating: rating,
@@ -86,7 +101,7 @@ const mutation = new GraphQLObjectType({
           },
         });
       },
-    }
+    },
   },
 });
 

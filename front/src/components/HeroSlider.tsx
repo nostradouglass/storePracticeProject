@@ -1,4 +1,3 @@
-import React from "react";
 import AwesomeSlider from "react-awesome-slider";
 // @ts-ignore
 import withAutoPlay from "react-awesome-slider/dist/autoplay";

@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react";
 import HamburgerMenu from "./HamburgerMenu";
 import { useAppSelector } from "../redux/hooks";
 
-const LeftNav = ({ isMobile }: { isMobile: boolean }) => {
+interface Props {
+  isMobile: boolean;
+}
+
+const LeftNav = ({ isMobile }: Props) => {
   if (isMobile) {
     return (
       <div className="flex flex-col justify-center">
@@ -28,7 +31,7 @@ const CenterNav = () => {
   );
 };
 
-const RightNav = ({ isMobile }: { isMobile: boolean }) => {
+const RightNav = ({ isMobile }: Props) => {
   if (isMobile) {
     return <h5>(0)</h5>;
   }

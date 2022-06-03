@@ -1,10 +1,4 @@
-import {
-  GraphQLObjectType,
-  GraphQLInt,
-  GraphQLString,
-  GraphQLBoolean,
-  GraphQLList
-} from "graphql";
+import { GraphQLObjectType, GraphQLInt, GraphQLList } from "graphql";
 import UserType from "./types/UserType";
 
 import pkg from "@prisma/client";
@@ -12,7 +6,6 @@ import ProductType from "./types/ProductType";
 const { PrismaClient } = pkg;
 
 const prisma = new PrismaClient();
-
 
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
@@ -29,7 +22,7 @@ const RootQuery = new GraphQLObjectType({
       resolve(parentValue, args) {
         return prisma.user.findUnique({
           where: {
-            id: args.id
+            id: args.id,
           },
         });
       },
@@ -37,9 +30,9 @@ const RootQuery = new GraphQLObjectType({
     products: {
       type: new GraphQLList(ProductType),
       resolve(parentValue, args) {
-        return prisma.product.findMany()
-      }
-    }
+        return prisma.product.findMany();
+      },
+    },
   },
 });
 
