@@ -1,24 +1,38 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useActions } from "../redux/hooks";
+import { useAppSelector } from "../redux/hooks";
 
-export let SearchBar = ({searchOpen, closeSearch}: any) => {
+export let SearchBar = ({ searchOpen, closeSearch }: any) => {
+  const { setSearchTerm } = useActions();
 
-  const [searchTerm, setSearchTerm] = useState("")
+  const { searchTerm } = useAppSelector(
+    (state) => state.searchTerm as { searchTerm: string }
+  );
 
   if (!searchOpen) {
     return <div></div>;
   } else {
     return (
       <div className="flex flex-row justify-between  md:pt-8">
-        <form>
+        <form onSubmit={(e) => e.preventDefault()}>
           <input
-          value={searchTerm}
-          onChange={({target}) => setSearchTerm(target.value)}
+            value={searchTerm}
+            onChange={({ target }) => setSearchTerm(target.value)}
             className="md:h-12 text-2xl border-0 outline-none"
             placeholder="Search products"
           />
-          {searchTerm.length > 0 ? (<h5 className="text-gray-500">Press Enter to search</h5>) : <></> }
+          {searchTerm.length > 0 ? (
+            <h5 className="text-gray-500">Press Enter to search</h5>
+          ) : (
+            <></>
+          )}
         </form>
-        <button onClick={() => closeSearch()}>
+        <button
+          onClick={() => {
+            closeSearch();
+            setSearchTerm("");
+          }}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"

@@ -1,4 +1,9 @@
-import { GraphQLObjectType, GraphQLInt, GraphQLList } from "graphql";
+import {
+  GraphQLObjectType,
+  GraphQLInt,
+  GraphQLList,
+  GraphQLString,
+} from "graphql";
 import UserType from "./types/UserType";
 
 import pkg from "@prisma/client";
@@ -31,6 +36,33 @@ const RootQuery = new GraphQLObjectType({
       type: new GraphQLList(ProductType),
       resolve(parentValue, args) {
         return prisma.product.findMany();
+      },
+    },
+    searchProducts: {
+      type: new GraphQLList(ProductType),
+      args: { term: { type: GraphQLString } },
+      resolve(parentValue, { term }) {
+        return prisma.product.findMany({
+          where: {
+            OR: [
+              {
+                title: {
+                  search: term,
+                },
+              },
+              {
+                brand: {
+                  search: term,
+                },
+              },
+              {
+                description: {
+                  search: term,
+                },
+              },
+            ],
+          },
+        });
       },
     },
   },

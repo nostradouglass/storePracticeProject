@@ -1,11 +1,13 @@
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import thunk from "redux-thunk";
 import { mobileReducer } from "../redux/reducers/mobileReducers";
+import { searchTermReducer } from "./reducers/searchTermReducers";
 
 const initialState = {};
 
 const reducer = combineReducers({
   mobileStatus: mobileReducer,
+  searchTerm: searchTermReducer
 });
 
 //@ts-ignore

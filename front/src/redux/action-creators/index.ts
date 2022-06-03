@@ -6,3 +6,6 @@ export const setMobile = (isMobile: boolean) => async (dispatch: Dispatch<SetIsM
   dispatch({ type: ActionType.SET_IS_MOBILE, payload: isMobile });
 };
 
+export const setSearchTerm = (term: string) => async (dispatch: Dispatch) => {
+  dispatch({ type: ActionType.SET_SEARCH_TERM, payload: term})
+}

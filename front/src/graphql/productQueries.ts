@@ -20,3 +20,16 @@ export const GET_ALL_PRODUCTS = gql`
     }
   }
 `
+
+export const SEARCH_PRODUCTS = gql`
+query SEARCH_PRODUCTS($term: String) {
+  searchProducts(term: $term) {
+  id
+  title
+  brand
+  image
+  imageAlt
+  price
+}
+}
+`
