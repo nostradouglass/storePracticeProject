@@ -3,7 +3,7 @@ import { useAppSelector } from "../redux/hooks";
 
 interface Props {
   isMobile: boolean;
-}
+};
 
 const LeftNav = ({ isMobile }: Props) => {
   if (isMobile) {
@@ -12,7 +12,7 @@ const LeftNav = ({ isMobile }: Props) => {
         <HamburgerMenu />
       </div>
     );
-  }
+  };
   return (
     <div className="flex justify-around md:w-64 lg:w-96">
       <h5 className="text-gray-500">Shop</h5>
@@ -34,7 +34,7 @@ const CenterNav = () => {
 const RightNav = ({ isMobile }: Props) => {
   if (isMobile) {
     return <h5>(0)</h5>;
-  }
+  };
   return (
     <div className="flex justify-between md:w-36">
       <div className="text-gray-500">
@@ -71,4 +71,4 @@ export default function Header() {
       <RightNav isMobile={isMobile} />
     </div>
   );
-}
+};

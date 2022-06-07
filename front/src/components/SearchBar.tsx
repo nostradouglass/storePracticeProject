@@ -2,7 +2,12 @@
 import { useActions } from "../redux/hooks";
 import { useAppSelector } from "../redux/hooks";
 
-export let SearchBar = ({ searchOpen, closeSearch }: any) => {
+interface Props {
+  searchOpen: boolean
+  closeSearch: () => void
+};
+
+export let SearchBar = ({ searchOpen, closeSearch }: Props) => {
   const { setSearchTerm } = useActions();
 
   const { searchTerm } = useAppSelector(

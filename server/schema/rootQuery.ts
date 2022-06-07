@@ -3,6 +3,7 @@ import {
   GraphQLInt,
   GraphQLList,
   GraphQLString,
+  GraphQLNonNull,
 } from "graphql";
 import UserType from "./types/UserType";
 
@@ -15,15 +16,9 @@ const prisma = new PrismaClient();
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
   fields: {
-    // users: {
-    //     type: new GraphQLList(UserType),
-    //     resolve() {
-    //         return prisma.user.findMany()
-    //     }
-    // },
     user: {
       type: UserType,
-      args: { id: { type: GraphQLInt } },
+      args: { id: { type: GraphQLNonNull(GraphQLInt) } },
       resolve(parentValue, args) {
         return prisma.user.findUnique({
           where: {
@@ -34,7 +29,7 @@ const RootQuery = new GraphQLObjectType({
     },
     product: {
       type: ProductType,
-      args: { id: { type: GraphQLInt } },
+      args: { id: { type: GraphQLNonNull(GraphQLInt) } },
       resolve(parentValue, { id }) {
         return prisma.product.findUnique({
           where: {
@@ -51,7 +46,7 @@ const RootQuery = new GraphQLObjectType({
     },
     searchProducts: {
       type: new GraphQLList(ProductType),
-      args: { term: { type: GraphQLString } },
+      args: { term: { type: GraphQLNonNull(GraphQLString) } },
       resolve(parentValue, { term }) {
         return prisma.product.findMany({
           where: {

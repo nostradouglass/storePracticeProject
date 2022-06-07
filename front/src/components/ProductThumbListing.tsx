@@ -1,21 +1,15 @@
 import { useState } from "react";
 import { useAppSelector } from "../redux/hooks";
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import {Product}  from '../Types';
 
 interface Props {
-  product: {
-    id: number;
-    image: string;
-    imageAlt: string;
-    title: string;
-    price: number;
-    favorite: boolean;
-  };
-}
+  product: Product
+};
 
 export const ProductThumbListing = ({ product }: Props) => {
 
-  const [hover, setHover] = useState(false)
+  const [hover, setHover] = useState(false);
 
   const [priceShowMore, setPriceShowMore] = useState<number | string>(
     `$${product.price}`

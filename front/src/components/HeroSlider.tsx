@@ -21,7 +21,7 @@ export default function HeroSlider() {
         <div data-src="./images/slider-basket-alt.jpg"></div>
       </AutoplaySlider>
     );
-  }
+  };
 
   return (
     <AutoplaySlider

@@ -1,32 +1,14 @@
-import { BreadCrumb } from "./BreadCrumb";
 import { DetailsArea } from "./DetailsArea";
 import { ImageArea } from "./ImageArea";
-import { useAppSelector } from '../../redux/hooks'
 import { ColorChoice } from "./ColorChoice";
 import { QuantityChoice } from "./QuantityChoice";
+import { Product} from '../../Types';
 
 interface Props {
-  product: {
-    brand: string;
-    color: string;
-    countInStock: number;
-    description: string;
-    favorite: false;
-    image: string;
-    imageAlt: string;
-    msrp: number;
-    numReviews: number;
-    price: number;
-    rating: number;
-    title: string;
-  }
-}
+  product: Product
+};
 
 export const ProductDetail = ({product}: Props) => {
-
-  const { isMobile } = useAppSelector(
-    (state) => state.mobileStatus as { isMobile: boolean }
-  );
 
   return (
     <div className="bg-gray-100">

@@ -7,11 +7,11 @@ export default function BreadcrumbAndSearch() {
     (state) => state.mobileStatus as { isMobile: boolean }
   );
 
-  const [searchBarOpen, setSearchBarOpen] = useState<boolean>(false)
+  const [searchBarOpen, setSearchBarOpen] = useState<boolean>(false);
 
   let closeSearch = () => {
-   setSearchBarOpen(false)
-  }
+   setSearchBarOpen(false);
+  };
 
   return (
     <div className="flex flex-col my-16 mx-2 md:mx-36">
@@ -83,4 +83,4 @@ export default function BreadcrumbAndSearch() {
       {isMobile ? <></> : <SearchBar searchOpen={searchBarOpen} closeSearch={closeSearch} />}
     </div>
   );
-}
+};

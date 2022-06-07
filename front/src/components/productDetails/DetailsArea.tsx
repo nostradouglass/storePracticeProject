@@ -1,10 +1,13 @@
-import { ProductRating } from "./ProductRating"
+import { ProductRating } from "./ProductRating";
+import {Product} from '../../Types';
 
+interface Props {
+    product: Product
+};
 
+export const DetailsArea = (props: Props) => {
 
-export const DetailsArea = (props: any) => {
-
-    let { product } = props
+    let { product } = props;
 
     return (
         <div className="p-4">
@@ -22,4 +25,4 @@ export const DetailsArea = (props: any) => {
             <ProductRating />
         </div>
     )
-}
+};

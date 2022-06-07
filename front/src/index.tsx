@@ -1,18 +1,17 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./redux/store";
-import { ApolloProvider, ApolloClient, InMemoryCache} from '@apollo/client'
+import { ApolloProvider, ApolloClient, InMemoryCache} from '@apollo/client';
 
 import "./css/index.css";
 
 const client = new ApolloClient({
   uri: 'http://localhost:8000/graphql',
    cache: new InMemoryCache()
-})
+});
 
 
 const root = ReactDOM.createRoot(

@@ -11,7 +11,7 @@ export let showStars = (numberOfStars: number) => {
     ThreeStar,
     FourStar,
     FiveStar,
-  }
+  };
 
   switch (numberOfStars) {
     case StarAmount.ZeroStar:

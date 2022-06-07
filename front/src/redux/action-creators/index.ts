@@ -7,5 +7,5 @@ export const setMobile = (isMobile: boolean) => async (dispatch: Dispatch<SetIsM
 };
 
 export const setSearchTerm = (term: string) => async (dispatch: Dispatch) => {
-  dispatch({ type: ActionType.SET_SEARCH_TERM, payload: term})
-}
+  dispatch({ type: ActionType.SET_SEARCH_TERM, payload: term});
+};

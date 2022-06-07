@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import HomeScreen from "./screens/HomeScreen";
-import { useActions } from './redux/hooks'
+import { useActions } from './redux/hooks';
 import { ProductDetailScreen } from "./screens/ProductDetailScreen";
 
 let App = () => {
