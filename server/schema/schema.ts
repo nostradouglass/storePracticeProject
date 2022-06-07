@@ -27,3 +27,10 @@ module.exports = new GraphQLSchema({
 //       lastName
 //     }
 //   }
+
+// query SINGLE_PRODUCT($id:Int) {
+//   product(id: $id) {
+//     id
+//     title
+// }
+// }

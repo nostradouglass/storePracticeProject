@@ -1,9 +1,8 @@
 import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import HomeScreen from "./screens/HomeScreen";
-// import {  useAppDispatch } from "./redux/hooks";
-import { setMobile } from "./redux/action-creators";
 import { useActions } from './redux/hooks'
+import { ProductDetailScreen } from "./screens/ProductDetailScreen";
 
 let App = () => {
   const { setMobile } = useActions();
@@ -19,12 +18,14 @@ let App = () => {
     } else {
       setMobile(false)
     }
-  }, []);
+  }, [setMobile]);
+
 
   return (
     <div className="">
       <Routes>
         <Route path="/" element={<HomeScreen />} />
+        <Route path="/products/:id" element={<ProductDetailScreen />} />
       </Routes>
     </div>
   );

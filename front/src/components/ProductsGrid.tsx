@@ -2,7 +2,6 @@ import { ProductThumbListing } from "./ProductThumbListing";
 import { GET_ALL_PRODUCTS, SEARCH_PRODUCTS } from "../graphql/productQueries";
 import { useQuery } from "@apollo/client";
 import { useAppSelector } from "../redux/hooks";
-import { useEffect } from "react";
 
 interface GetAllProducts {
   id: number;
@@ -45,7 +44,7 @@ export default function ProductsGrid() {
     return (
     <div className="flex flex-row justify-center flex-wrap  m-4">
       {foundProducts?.data?.searchProducts.map((product: any) => {
-        console.log(product)
+      
         return <ProductThumbListing product={product} key={product.id} />;
       })}
     </div>

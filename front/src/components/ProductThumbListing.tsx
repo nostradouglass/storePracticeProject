@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useAppSelector } from "../redux/hooks";
+import { Link } from 'react-router-dom'
 
 interface Props {
   product: {
@@ -72,7 +73,9 @@ export const ProductThumbListing = ({ product }: Props) => {
 
   return (
     <div className="m-2">
-      <img
+      <Link to={"/products/" + (product.id).toString()}>
+      <img 
+        alt={`${product.title}`}
         onMouseEnter={() => onHover()}
         onMouseLeave={() => onHoverLeave()}
         className="w-40 h-84 md:w-80 md:h-96 cursor-pointer"
@@ -82,6 +85,7 @@ export const ProductThumbListing = ({ product }: Props) => {
           : 
           `../images/${product.image}`}
       />
+      </Link>
       <div className="flex justify-between">
         <h4 className="text-gray-500 py-2 w-24 cursor-pointer">
           {product.title}

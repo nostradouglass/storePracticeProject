@@ -32,6 +32,17 @@ const RootQuery = new GraphQLObjectType({
         });
       },
     },
+    product: {
+      type: ProductType,
+      args: { id: { type: GraphQLInt } },
+      resolve(parentValue, { id }) {
+        return prisma.product.findUnique({
+          where: {
+            id: id,
+          },
+        });
+      },
+    },
     products: {
       type: new GraphQLList(ProductType),
       resolve(parentValue, args) {
