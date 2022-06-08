@@ -1,5 +1,6 @@
 import HamburgerMenu from "./HamburgerMenu";
 import { useAppSelector } from "../redux/hooks";
+import { Link } from 'react-router-dom'
 
 interface Props {
   isMobile: boolean;
@@ -26,7 +27,7 @@ const LeftNav = ({ isMobile }: Props) => {
 const CenterNav = () => {
   return (
     <h1 className="text-gray-800 text-2xl tracking-widest md:w-60 lg:w-96">
-      SAVOY
+     <Link to="/">SAVOY</Link>
     </h1>
   );
 };

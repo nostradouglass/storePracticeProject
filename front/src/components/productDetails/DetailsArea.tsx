@@ -10,7 +10,7 @@ export const DetailsArea = (props: Props) => {
     let { product } = props;
 
     return (
-        <div className="p-4">
+        <div className="p-4 md:mt-24">
             <h2>Title</h2>
             <div className="flex flex-row xy-4 py-4">
                 <h5 className="text-gray-500 text-xs mx-2 line-through">$123.00</h5>

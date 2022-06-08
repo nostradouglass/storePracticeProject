@@ -5,17 +5,20 @@ interface Props {
     children?: React.ReactNode
 };
 
-export const ImageArea: React.FC<Props> = ({children, image}) => {
+export const ImageArea: React.FC<Props> = ({children, image, imageAlt}) => {
 
     return (
-        <div className="w-full md:mt-4">
+        <div className="md:ml-48 w-full md:mt-4">
             {children}
             <div className="flex flex-row">
-                {/* <div className="flex flex-col ">
-                    <div className="w-12 h-12 bg-blue-400 m-4"></div>
-                    <div className="w-12 h-12 bg-blue-400 m-4 "></div>
-                    <div className="w-12 h-12 bg-blue-400 m-4"></div>
-                </div> */}
+                <div className="flex-col hidden md:block">
+                    <div className="w-12 h-12  m-4"> 
+                    <img  src={`../images/${image}`} />
+                    </div>
+                    <div className="w-12 h-12  m-4"> 
+                    <img  src={`../images/${imageAlt}`} />
+                    </div>
+                </div>
                 <div className="">
                     <img src={`../images/${image}`} />
                 </div>

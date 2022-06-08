@@ -7,7 +7,9 @@ export default function HomeScreen() {
   return (
     <MainLayout>
       <>
+      
       <HeroSlider />
+      
       <BreadcrumbAndSearch />
       <ProductsGrid />
       </>
