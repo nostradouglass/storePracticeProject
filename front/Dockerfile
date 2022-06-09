@@ -2,7 +2,7 @@ FROM node:18-alpine as builder
 
 WORKDIR "/app"
 
-COPY ./package.json ./
+COPY ./package*.json ./
 
 RUN npm install
 
@@ -15,4 +15,8 @@ FROM nginx:1.22
 
 COPY --from=builder /app/build/ /usr/share/nginx/html
 
+EXPOSE 80
+
 COPY --from=builder /app/default.conf /etc/nx/conf.d/default.conf
+
+CMD ["nginx", "-g", "daemon off;"]
