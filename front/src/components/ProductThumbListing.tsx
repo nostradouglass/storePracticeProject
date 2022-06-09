@@ -1,7 +1,9 @@
 import { useState } from "react";
-import { useAppSelector } from "../redux/hooks";
+
 import { Link } from 'react-router-dom';
 import {Product}  from '../Types';
+import { useReactiveVar } from '@apollo/client';
+import { isMobileVar } from "../graphql/state"
 
 interface Props {
   product: Product
@@ -15,9 +17,8 @@ export const ProductThumbListing = ({ product }: Props) => {
     `$${product.price}`
   );
 
-  const { isMobile } = useAppSelector(
-    (state) => state.mobileStatus as { isMobile: boolean }
-  );
+  const isMobile = useReactiveVar(isMobileVar)
+
 
   let onHover = () => {
     setPriceShowMore("Show more");

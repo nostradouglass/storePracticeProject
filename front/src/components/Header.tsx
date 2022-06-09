@@ -1,12 +1,27 @@
 import HamburgerMenu from "./HamburgerMenu";
-import { useAppSelector } from "../redux/hooks";
 import { Link } from 'react-router-dom'
+import { useReactiveVar } from '@apollo/client';
+import { isMobileVar } from "../graphql/state";
 
 interface Props {
   isMobile: boolean;
 };
 
+
+export default function Header() {
+  const isMobile = useReactiveVar(isMobileVar)
+
+  return (
+    <div className="flex justify-between py-12 px-12">
+      <LeftNav isMobile={isMobile} />
+      <CenterNav />
+      <RightNav isMobile={isMobile} />
+    </div>
+  );
+};
+
 const LeftNav = ({ isMobile }: Props) => {
+
   if (isMobile) {
     return (
       <div className="flex flex-col justify-center">
@@ -60,16 +75,4 @@ const RightNav = ({ isMobile }: Props) => {
   );
 };
 
-export default function Header() {
-  const { isMobile } = useAppSelector(
-    (state) => state.mobileStatus as { isMobile: boolean }
-  );
 
-  return (
-    <div className="flex justify-between py-12 px-12">
-      <LeftNav isMobile={isMobile} />
-      <CenterNav />
-      <RightNav isMobile={isMobile} />
-    </div>
-  );
-};

@@ -13,14 +13,14 @@ export const ImageArea: React.FC<Props> = ({children, image, imageAlt}) => {
             <div className="flex flex-row">
                 <div className="flex-col hidden md:block">
                     <div className="w-12 h-12  m-4"> 
-                    <img  src={`../images/${image}`} />
+                    <img alt="primary" src={`../images/${image}`} />
                     </div>
                     <div className="w-12 h-12  m-4"> 
-                    <img  src={`../images/${imageAlt}`} />
+                    <img alt="alternate" src={`../images/${imageAlt}`} />
                     </div>
                 </div>
                 <div className="">
-                    <img src={`../images/${image}`} />
+                    <img alt="primary" src={`../images/${image}`} />
                 </div>
             </div>
         </div>

@@ -1,6 +1,6 @@
 
-import { useActions } from "../redux/hooks";
-import { useAppSelector } from "../redux/hooks";
+import { useReactiveVar } from '@apollo/client';
+import { searchTermVar } from "../graphql/state"
 
 interface Props {
   searchOpen: boolean
@@ -8,11 +8,8 @@ interface Props {
 };
 
 export let SearchBar = ({ searchOpen, closeSearch }: Props) => {
-  const { setSearchTerm } = useActions();
 
-  const { searchTerm } = useAppSelector(
-    (state) => state.searchTerm as { searchTerm: string }
-  );
+  const searchTerm = useReactiveVar(searchTermVar)
 
   if (!searchOpen) {
     return <div></div>;
@@ -22,7 +19,7 @@ export let SearchBar = ({ searchOpen, closeSearch }: Props) => {
         <form onSubmit={(e) => e.preventDefault()}>
           <input
             value={searchTerm}
-            onChange={({ target }) => setSearchTerm(target.value)}
+            onChange={({ target }) => searchTermVar(target.value)}
             className="md:h-12 text-2xl border-0 outline-none"
             placeholder="Search products"
           />
@@ -35,7 +32,7 @@ export let SearchBar = ({ searchOpen, closeSearch }: Props) => {
         <button
           onClick={() => {
             closeSearch();
-            setSearchTerm("");
+            searchTermVar("");
           }}
         >
           <svg

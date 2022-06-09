@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { useAppSelector } from "../redux/hooks";
 import { SearchBar } from "./SearchBar";
+import { useReactiveVar } from '@apollo/client';
+import { isMobileVar } from "../graphql/state";
 
 export default function BreadcrumbAndSearch() {
-  const { isMobile } = useAppSelector(
-    (state) => state.mobileStatus as { isMobile: boolean }
-  );
+
+  const isMobile = useReactiveVar(isMobileVar)
 
   const [searchBarOpen, setSearchBarOpen] = useState<boolean>(false);
 

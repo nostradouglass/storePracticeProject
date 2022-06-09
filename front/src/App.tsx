@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import HomeScreen from "./screens/HomeScreen";
-import { useActions } from './redux/hooks';
 import { ProductDetailScreen } from "./screens/ProductDetailScreen";
+import {isMobileVar} from './graphql/state'
+
 
 let App = () => {
-  const { setMobile } = useActions();
 
   useEffect(() => {
     //@ts-ignore
@@ -14,11 +14,14 @@ let App = () => {
         navigator.userAgent
       )
     ) {
-      setMobile(true)
+      // setMobile(true)
+      isMobileVar(true)
+
     } else {
-      setMobile(false)
+      // setMobile(false)
+      isMobileVar(false)
     }
-  }, [setMobile]);
+  }, []);
 
 
   return (

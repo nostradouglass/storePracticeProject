@@ -1,8 +1,9 @@
 import { ProductThumbListing } from "./ProductThumbListing";
 import { GET_ALL_PRODUCTS, SEARCH_PRODUCTS } from "../graphql/productQueries";
 import { useQuery } from "@apollo/client";
-import { useAppSelector } from "../redux/hooks";
 import { Product } from "../Types";
+import {searchTermVar} from "../graphql/state"
+import {useReactiveVar} from '@apollo/client'
 
 interface GetAllProductsData {
   products: Product[];
@@ -17,9 +18,8 @@ export default function ProductsGrid() {
     GET_ALL_PRODUCTS
   );
 
-  const { searchTerm } = useAppSelector(
-    (state) => state.searchTerm as { searchTerm: string }
-  );
+
+  const searchTerm = useReactiveVar(searchTermVar)
 
   const foundProducts = useQuery<SearchProductsData, { term: string }>(
     SEARCH_PRODUCTS,
