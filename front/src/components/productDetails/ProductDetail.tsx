@@ -2,8 +2,8 @@ import { DetailsArea } from "./DetailsArea";
 import { ImageArea } from "./ImageArea";
 import { ColorChoice } from "./ColorChoice";
 import { QuantityChoice } from "./QuantityChoice";
-import { Product} from '../../Types';
-import { DarkButton } from "../DarkButton";
+import { ColorTypes, Product} from '../../Types';
+import { Button } from "../ui/Button";
 import { Description } from "./Description";
 
 interface Props {
@@ -20,7 +20,7 @@ export const ProductDetail = ({product}: Props) => {
         <DetailsArea product={product} />
         <ColorChoice image1={product.image} image2={product.imageAlt} />
         <QuantityChoice />
-        <DarkButton text="Add to cart"></DarkButton>
+        <Button text="Add to cart" colorType={ColorTypes.DARK}></Button>
         </div>
         
         </div>

@@ -14,3 +14,9 @@ export interface Product {
     favorite: boolean;
     color: string;
   }
+
+
+  export enum ColorTypes {
+    DARK,
+    LIGHT
+}
