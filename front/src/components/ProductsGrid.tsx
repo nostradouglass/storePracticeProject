@@ -23,7 +23,7 @@ export default function ProductsGrid() {
 
   const foundProducts = useQuery<SearchProductsData, { term: string }>(
     SEARCH_PRODUCTS,
-    { variables: { term: searchTerm }, pollInterval: 500 }
+    { variables: { term: searchTerm } }
   );
 
   if (error) <h3>Error!</h3>;

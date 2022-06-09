@@ -41,7 +41,7 @@ query SINGLE_PRODUCT($id:Int) {
 `
 
 export const SEARCH_PRODUCTS = gql`
-query SEARCH_PRODUCTS($term: String) {
+query SEARCH_PRODUCTS($term: String!) {
   searchProducts(term: $term) {
   id
   title
