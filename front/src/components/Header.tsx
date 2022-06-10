@@ -1,7 +1,7 @@
 import HamburgerMenu from "./HamburgerMenu";
 import { Link } from 'react-router-dom'
 import { useReactiveVar } from '@apollo/client';
-import { isMobileVar } from "../graphql/state";
+import { isMobileVar, signInModalOpenVar } from "../graphql/state";
 
 interface Props {
   isMobile: boolean;
@@ -52,7 +52,7 @@ const RightNav = ({ isMobile }: Props) => {
     return <h5>(0)</h5>;
   };
   return (
-    <div className="flex justify-between md:w-36">
+    <div className="flex justify-between md:w-36 items-center">
       <div className="text-gray-500">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -69,7 +69,7 @@ const RightNav = ({ isMobile }: Props) => {
           />
         </svg>
       </div>
-      <h5 className="text-gray-500">Sign in</h5>
+      <button onClick={() => signInModalOpenVar(true)}><h5 className="text-gray-500">Sign in</h5></button>
       <h5 className="text-gray-500">Cart</h5>
     </div>
   );

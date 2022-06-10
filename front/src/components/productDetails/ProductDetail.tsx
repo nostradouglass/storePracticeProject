@@ -20,7 +20,7 @@ export const ProductDetail = ({product}: Props) => {
         <DetailsArea product={product} />
         <ColorChoice image1={product.image} image2={product.imageAlt} />
         <QuantityChoice />
-        <Button text="Add to cart" colorType={ColorTypes.DARK}></Button>
+        <Button onClick={() => console.log("test")} text="Add to cart" colorType={ColorTypes.DARK}></Button>
         </div>
         
         </div>

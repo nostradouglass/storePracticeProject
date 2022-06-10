@@ -1,3 +1,4 @@
+import { Register } from "./components/Register";
 
 export interface Product {
     id: number;
@@ -19,4 +20,9 @@ export interface Product {
   export enum ColorTypes {
     DARK,
     LIGHT
+}
+
+export enum RegisterSignInType {
+  REGISTER,
+  SIGNIN
 }
