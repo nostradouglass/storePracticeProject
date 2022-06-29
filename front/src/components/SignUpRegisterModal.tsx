@@ -1,6 +1,6 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment, useRef, useState } from "react";
-import { Dialog, Transition } from "@headlessui/react";
+import { Fragment, useRef } from "react"
+import { Dialog, Transition} from '@headlessui/react';
 import { XIcon } from "@heroicons/react/solid";
 import { SignIn } from "./SignIn";
 import { Register } from "./Register";
@@ -56,7 +56,7 @@ export default function SignUpRegisterModal() {
                         as="h3"
                         className="font-sans text-2xl text-center leading-6 font-medium text-gray-900"
                       >
-                        {registerSignIn == RegisterSignInType.REGISTER
+                        {registerSignIn === RegisterSignInType.REGISTER
                           ? "Register"
                           : "Sign In"}
                       </Dialog.Title>

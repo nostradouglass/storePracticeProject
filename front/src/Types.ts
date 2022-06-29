@@ -1,4 +1,3 @@
-import { Register } from "./components/Register";
 
 export interface Product {
     id: number;

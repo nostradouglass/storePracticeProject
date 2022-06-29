@@ -6,7 +6,7 @@ import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import "./css/index.css";
 
 const DEV_ENV =
-  process.env.NODE_ENV == "development"
+  process.env.NODE_ENV === "development"
     ? "http://localhost:8000/graphql"
     : "http://something.com";
 
