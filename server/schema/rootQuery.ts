@@ -6,6 +6,7 @@ import {
   GraphQLNonNull,
 } from "graphql";
 import UserType from "./types/UserType";
+import bcrypt from 'bcryptjs'
 
 import pkg from "@prisma/client";
 import ProductType from "./types/ProductType";
@@ -16,6 +17,23 @@ const prisma = new PrismaClient();
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
   fields: {
+    login: {
+      type: UserType,
+      args: { email: { type: GraphQLNonNull(GraphQLString)}, password: { type: GraphQLNonNull(GraphQLString)}},
+      async resolve(parentValue, args) {
+        console.log(args.email)
+        console.log(args.password)
+        let user = await prisma.user.findUnique({
+          where: {
+            email: args.email
+          }
+        })
+        if (bcrypt.compareSync(args.password, user!.password)) {
+          return user
+        }
+      }
+
+    },
     user: {
       type: UserType,
       args: { id: { type: GraphQLNonNull(GraphQLInt) } },
