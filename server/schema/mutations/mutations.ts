@@ -10,6 +10,7 @@ import {
 } from "graphql";
 import ProductType from "../types/ProductType";
 import UserType from "../types/UserType";
+import bcrypt from 'bcryptjs'
 
 const prisma = new PrismaClient();
 
@@ -26,15 +27,16 @@ const mutation = new GraphQLObjectType({
         password: { type: new GraphQLNonNull(GraphQLString) },
       },
       resolve(parentValue, { firstName, lastName, email, isAdmin, password }) {
-        return prisma.user.create({
+      let createdUser = prisma.user.create({
           data: {
             firstName: firstName,
             lastName: lastName,
             email: email,
             isAdmin: isAdmin,
-            password: password,
+            password: bcrypt.hashSync(password, 10),
           },
         });
+        return createdUser
       },
     },
     removeUser: {
