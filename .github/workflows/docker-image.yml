@@ -32,4 +32,4 @@ jobs:
               context: ./server
               file: ./Dockerfile
               push: true
-              tags: ${{ secrets.DOCKER_USER }}/storePratice-server:$(date +%s)
+              tags: ${{ secrets.DOCKER_USER }}/storePratice-server:latest
