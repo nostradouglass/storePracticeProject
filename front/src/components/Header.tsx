@@ -1,15 +1,15 @@
 import HamburgerMenu from "./HamburgerMenu";
-import { Link } from 'react-router-dom'
-import { useReactiveVar } from '@apollo/client';
+import { Link } from "react-router-dom";
+import { useReactiveVar } from "@apollo/client";
 import { isMobileVar, signInModalOpenVar } from "../graphql/state";
+import { useEffect, useState } from "react";
 
 interface Props {
   isMobile: boolean;
-};
-
+}
 
 export default function Header() {
-  const isMobile = useReactiveVar(isMobileVar)
+  const isMobile = useReactiveVar(isMobileVar);
 
   return (
     <div className="flex justify-between py-12 px-12">
@@ -18,17 +18,16 @@ export default function Header() {
       <RightNav isMobile={isMobile} />
     </div>
   );
-};
+}
 
 const LeftNav = ({ isMobile }: Props) => {
-
   if (isMobile) {
     return (
       <div className="flex flex-col justify-center">
         <HamburgerMenu />
       </div>
     );
-  };
+  }
   return (
     <div className="flex justify-around md:w-64 lg:w-96">
       <h5 className="text-gray-500">Shop</h5>
@@ -42,15 +41,24 @@ const LeftNav = ({ isMobile }: Props) => {
 const CenterNav = () => {
   return (
     <h1 className="text-gray-800 text-2xl tracking-widest md:w-60 lg:w-96">
-     <Link to="/">SAVOY</Link>
+      <Link to="/">SAVOY</Link>
     </h1>
   );
 };
 
 const RightNav = ({ isMobile }: Props) => {
+  const [userInfo, setUserInfo] = useState<string | null>(null);
+
+  useEffect(() => {
+    let userInfo: string | null = localStorage.getItem("user")
+      ? JSON.parse(localStorage.getItem("user")!)
+      : null;
+    setUserInfo(userInfo);
+  }, []);
+
   if (isMobile) {
     return <h5>(0)</h5>;
-  };
+  }
   return (
     <div className="flex justify-between md:w-36 items-center">
       <div className="text-gray-500">
@@ -69,10 +77,19 @@ const RightNav = ({ isMobile }: Props) => {
           />
         </svg>
       </div>
-      <button onClick={() => signInModalOpenVar(true)}><h5 className="text-gray-500">Sign in</h5></button>
+      <button
+        onClick={() => {
+          if (!userInfo) {
+            signInModalOpenVar(true);
+          } else {
+            localStorage.removeItem("user");
+            setUserInfo(null)
+          }
+        }}
+      >
+        <h5 className="text-gray-500">{userInfo ? "Sign out" : "Sign in"}</h5>
+      </button>
       <h5 className="text-gray-500">Cart</h5>
     </div>
   );
 };
-
-

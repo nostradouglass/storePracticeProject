@@ -7,9 +7,7 @@ import{ useMutation} from '@apollo/client'
 
 export const Register = () => {
 
-  // const [ addUser ] = useMutation(ADD_USER, {
 
-  // })
 
   return (
     <form onSubmit={() => null}>

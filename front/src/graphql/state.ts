@@ -7,3 +7,5 @@ export const searchTermVar = makeVar("")
 
 export const registerSignInVar = makeVar(RegisterSignInType.SIGNIN)
 export const signInModalOpenVar = makeVar(false)
+export const isSignedIn = makeVar(false)
+

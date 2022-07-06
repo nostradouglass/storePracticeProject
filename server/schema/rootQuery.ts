@@ -21,8 +21,6 @@ const RootQuery = new GraphQLObjectType({
       type: UserType,
       args: { email: { type: GraphQLNonNull(GraphQLString)}, password: { type: GraphQLNonNull(GraphQLString)}},
       async resolve(parentValue, args) {
-        console.log(args.email)
-        console.log(args.password)
         let user = await prisma.user.findUnique({
           where: {
             email: args.email
@@ -31,6 +29,7 @@ const RootQuery = new GraphQLObjectType({
         if (bcrypt.compareSync(args.password, user!.password)) {
           return user
         }
+        throw new Error("Login error")
       }
 
     },
